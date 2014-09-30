@@ -6,7 +6,7 @@
 require_once("connectBD.inc");
 
 $sentencia = "SELECT IdPais, NomPais FROM paises";
-$result = mysql_query($sentencia, $iden);
+$result = mysqli_query($iden, $sentencia);
 
 // Solo se muestra el selector si se ha encontrado algún país
 if($result) {
@@ -16,10 +16,10 @@ if($result) {
     <div class="controls">
         <select id="pais" name="pais">
             <option value="0" selected="selected">[Escoge un país]</option>
-            <?php while($row = mysql_fetch_array($result)) { ?>
+            <?php while($row = mysqli_fetch_array($result)) { ?>
                     <option value="<?php echo $row['IdPais']; ?>"><?php echo $row['NomPais']; ?></option>
              <?php }
-    mysql_free_result($result);
+    mysqli_free_result($result);
 } ?>
         </select>
     </div>

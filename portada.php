@@ -12,11 +12,11 @@
 								LEFT JOIN paises ON IdPais = Pais
 								ORDER BY Fecha DESC
 								LIMIT 12";
-			$result = mysql_query($sentencia, $iden);
+			$result = mysqli_query($iden, $sentencia);
 
-			if($result && mysql_num_rows($result) > 0) {
+			if($result && mysqli_num_rows($result) > 0) {
 				require('includes/resumenes.inc');
-				mysql_free_result($result);
+				mysqli_free_result($result);
 			}
 		?>
 		</ul>
@@ -31,13 +31,13 @@
 									WHERE NumVotos > 0
 									ORDER BY (PuntuacionTotal DIV NumVotos) DESC
 									LIMIT 10";
-				$result = mysql_query($sentencia, $iden);
+				$result = mysqli_query($iden, $sentencia);
 
-				if($result && mysql_num_rows($result) > 0) { ?>
+				if($result && mysqli_num_rows($result) > 0) { ?>
 					<section id="destacadas">
 						<h3><a href="mejores_boilerplate/index.php">Las mejores</a></h3>
 						<ul id="lista-destacadas" class="lista-destacadas">
-							<?php require('includes/resumenes.inc'); mysql_free_result($result); ?>
+							<?php require('includes/resumenes.inc'); mysqli_free_result($result); ?>
 						</ul>
 						<script type="text/javascript" src="js/slideshow.js"></script>
 					</section>
@@ -49,4 +49,4 @@
 	</aside>
 </section>
 
-<?php mysql_close($iden); ?>
+<?php mysqli_close($iden); ?>

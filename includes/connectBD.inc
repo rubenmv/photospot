@@ -1,13 +1,16 @@
 <?php
 	// Se conecta al SGBD
-	if(!($iden = mysql_connect("localhost", "root", "")))
-		die("Error: No se pudo conectar");
+	if(!($iden = mysqli_connect("localhost", "root", ""))) {
+		die("Error: No se pudo conectar.");
+	}
 
+	
 	// Selecciona la base de datos
-	if(!mysql_select_db("ps_bd", $iden))
+	if(!mysqli_select_db($iden, "ps_bd")) {
 		die("Error: No existe la base de datos");
-
+	}
+	
 	// Evita problemas de codificación por parte del servidor
 	// al realizar consultas
-	mysql_set_charset('utf8', $iden);
+	mysqli_set_charset($iden, "utf8");
 ?>

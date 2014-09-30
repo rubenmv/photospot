@@ -7,8 +7,8 @@
 					LEFT JOIN paises p ON p.IdPais = u.pais
 					WHERE NomUsuario = '$usuario'";
 
-	$result = mysql_query($sentencia, $iden);
-	$row = mysql_fetch_array($result);
+	$result = mysqli_query($iden, $sentencia);
+	$row = mysqli_fetch_array($result);
 
 	$fechaSQL = $row['FNacimiento'];
 ?>

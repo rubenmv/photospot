@@ -7,20 +7,20 @@
 
 	// Recogemos la id del usuario que envia el comentario
 	$sentencia = "SELECT IdUsuario FROM usuarios WHERE NomUsuario = '$usuario'";
-	$result = mysql_query($sentencia, $iden);
+	$result = mysqli_query($iden, $sentencia);
 
 	if($result) {
-		$row = mysql_fetch_array($result);
+		$row = mysqli_fetch_array($result);
 		$idUsuario = $row['IdUsuario'];
-		mysql_free_result($result);
+		mysqli_free_result($result);
 
 		$sentencia = "INSERT INTO `comentarios` (`IdFoto`, `IdUsuario`, `Texto`) VALUES
 								  ('$idFoto', '$idUsuario', '$texto')";
 
-		$result = mysql_query($sentencia, $iden);
+		$result = mysqli_query($iden, $sentencia);
 
 		if(isset($iden)) {
-			mysql_close($iden);
+			mysqli_close($iden);
 		}
 		
 		// Si todo va bien devolvemos el id de la foto

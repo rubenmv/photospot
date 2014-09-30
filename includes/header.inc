@@ -23,8 +23,8 @@
 					$sentencia = "SELECT usuarios.Foto FROM usuarios
 									WHERE NomUsuario = '$usuario'";
 
-					$result = mysql_query($sentencia, $iden);
-					$row = mysql_fetch_array($result);
+					$result = mysqli_query($iden, $sentencia);
+					$row = mysqli_fetch_array($result);
 
 					if($row['Foto'] !== NULL) $userFoto = $row['Foto'];
 					else $userFoto = "files/profile/default-avatar.png";

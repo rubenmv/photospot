@@ -100,4 +100,4 @@
     </form>
 </section>
 
-<?php mysql_close($iden); ?>
+<?php mysqli_close($iden); ?>

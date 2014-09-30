@@ -6,8 +6,8 @@
 		// Seleccionamos el nombre del álbum
 		$id = $_GET['id'];
 		$sentencia = 	"SELECT Titulo, Descripcion, Fecha, Pais FROM albumes WHERE IdAlbum = $id";
-		$result = mysql_query($sentencia, $iden);
-		$row = mysql_fetch_array($result);
+		$result = mysqli_query($iden, $sentencia);
+		$row = mysqli_fetch_array($result);
 
 	// Información del álbum ?>
 	<h3>Álbum: <?php echo $row['Titulo']; ?></h3>
@@ -26,11 +26,11 @@
 			}
 			if($row['Pais'] != NULL) {
 				// Ya no necesitamos el resultado anterior
-				mysql_free_result($result);
+				mysqli_free_result($result);
 				// Seleccionamos el nombre del pais
 				$sentencia = "SELECT NomPais FROM paises WHERE IdPais = $row[Pais]";
-				$result = mysql_query($sentencia, $iden);
-				$row = mysql_fetch_array($result); // Tampoco necesitamos el row anterior
+				$result = mysqli_query($iden, $sentencia);
+				$row = mysqli_fetch_array($result); // Tampoco necesitamos el row anterior
 				echo " en <span class=\"bold\">$row[NomPais]</span>";
 			}
 		}
@@ -45,17 +45,17 @@
 								LEFT JOIN paises ON IdPais = Pais
 							WHERE Album = $id
 							ORDER BY Fecha DESC";
-		$result = mysql_query($sentencia, $iden);
+		$result = mysqli_query($iden, $sentencia);
 
-		if($result && mysql_num_rows($result) > 0) {
+		if($result && mysqli_num_rows($result) > 0) {
 		?>
 		<section class="res-fotos">
 			<ul id="lista-resumen" class="lista-resumen">
 			<?php
 				require('includes/resumenes.inc');
 
-				mysql_free_result($result);
-				mysql_close($iden);
+				mysqli_free_result($result);
+				mysqli_close($iden);
 			?>
 			</ul>
 		</section>

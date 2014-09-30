@@ -16,10 +16,10 @@
 						LEFT JOIN paises p ON f.Pais = p.IdPais
 						LEFT JOIN usuarios u ON a.Usuario = u.IdUsuario
 					WHERE f.IdFoto = $idFoto";
-	$result = mysql_query($sentencia, $iden);
+	$result = mysqli_query($iden, $sentencia);
 
 	if($result) {
-		$row = mysql_fetch_array($result);
+		$row = mysqli_fetch_array($result);
 
 		?>
 		<section id="detalle-foto" class="detalle-foto">
@@ -58,10 +58,10 @@
 					</div>
 				</p>
 	<?php
-		mysql_free_result($result);
+		mysqli_free_result($result);
 	}
 
-	if(isset($iden)) { mysql_close($iden); }
+	if(isset($iden)) { mysqli_close($iden); }
 
 	?>
 				<form id="form-votar" method="post" onsubmit="peticionAJAXVotar('votar.php', <?php echo $idFoto; ?>); return false;">

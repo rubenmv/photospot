@@ -11,12 +11,12 @@ $sentencia = 	"SELECT  f.IdFoto, f.Titulo as TituloFoto, f.Fecha, f.NumVotos, f.
 					WHERE NumVotos != 0
 					ORDER BY (PuntuacionTotal DIV NumVotos) DESC
 					LIMIT 10";
-$result = mysql_query($sentencia, $iden);
+$result = mysqli_query($iden, $sentencia);
 
-if($result && mysql_num_rows($result) != 0) {
+if($result && mysqli_num_rows($result) != 0) {
 	// Si hay resultados, los guardamos en un vector de objetos JSON
 	$fotos = array();
-	for ($i=0; $row = mysql_fetch_array($result); $i++) {
+	for ($i=0; $row = mysqli_fetch_array($result); $i++) {
 		$foto = array(  'id' => $row['IdFoto'],
 						'titulo' => $row['TituloFoto'],
 						'fecha' => $row['Fecha'],
@@ -33,14 +33,14 @@ if($result && mysql_num_rows($result) != 0) {
 	$fotosJSON = json_encode($fotos);
 	echo $fotosJSON;
 
-	mysql_free_result($result);
+	mysqli_free_result($result);
 }
 else {
 	echo "false";
 }
 
 if(isset($iden)) {
-	mysql_close($iden);
+	mysqli_close($iden);
 }
 exit;
 ?>

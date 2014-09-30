@@ -17,19 +17,19 @@ else {
 	$nombre = $_POST['nombre'];
 
 	$sentencia = "SELECT NomUsuario FROM usuarios WHERE NomUsuario = '$nombre'";
-	$result = mysql_query($sentencia, $iden);
+	$result = mysqli_query($iden, $sentencia);
 
 	// Encuentra al menos un usuario con ese nombre
-	if(mysql_num_rows($result) > 0) {
+	if(mysqli_num_rows($result) > 0) {
 
-		$row = mysql_fetch_array($result);
-		mysql_free_result($result);
+		$row = mysqli_fetch_array($result);
+		mysqli_free_result($result);
 
 		// Si viene desde registro (5) o
 		// viene desde modificación de datos (15) y el usuario es distinto al logado
 		//		Devolvemos a la página anterior
 		if ($id == 5 || ($id == 15 && $row['NomUsuario'] != $_SESSION['sesion'])) {
-			mysql_close($iden);
+			mysqli_close($iden);
 			$extra = 'index.php?content='.$id.'&msg=1'; // Usuario ya existe
 			// No seguimos, redirige directamente
 			header("Location: http://$host$uri/$extra");

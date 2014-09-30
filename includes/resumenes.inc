@@ -4,7 +4,7 @@
 if(!isset($imgWidth)) $imgWidth = 300;
 if(!isset($imgHeight)) $imgHeight = 180;
 
-while ($row = mysql_fetch_array($result)) {
+while ($row = mysqli_fetch_array($result)) {
 
 	$pais = $row['NomPais'];
 	$fecha = $row['Fecha'];

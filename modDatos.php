@@ -22,11 +22,11 @@
                 require_once("includes/connectBD.inc"); // $iden
                 $sentencia = "SELECT * FROM usuarios WHERE NomUsuario = '$userLogado'";
 
-                $result = mysql_query($sentencia, $iden);
+                $result = mysqli_query($iden, $sentencia);
 
                 if($result) {
-                    $datos = mysql_fetch_array($result);
-                    mysql_free_result($result); // Ya no hace falta
+                    $datos = mysqli_fetch_array($result);
+                    mysqli_free_result($result); // Ya no hace falta
             ?>
 
                     <div class="fGrupo">
@@ -87,7 +87,7 @@
 
                     <?php // Paises desde la BD
                     $sentencia = "SELECT IdPais, NomPais FROM paises";
-                    $result = mysql_query($sentencia, $iden);
+                    $result = mysqli_query($iden, $sentencia);
 
                     // Solo se muestra el selector si se ha encontrado algún país
                     if($result) {
@@ -98,12 +98,12 @@
                             <select id="pais" name="pais">
                                 <option value="0" <?php if ($datos['Pais'] == NULL) { echo "selected=\"selected\""; } ?>>Escoge un país</option>
                                 <?php // El resto de países a través de la BD
-                                    while($row = mysql_fetch_array($result)) { ?>
+                                    while($row = mysqli_fetch_array($result)) { ?>
                                         <option value="<?php echo $row['IdPais']; ?>" <?php if($datos['Pais'] == $row['IdPais']) echo "selected=\"selected\"";?>><?php echo $row['NomPais']; ?></option>
                                 <?php }
                         // Libera memoria del resultado y cerrar
-                        mysql_free_result($result);
-                        mysql_close($iden);
+                        mysqli_free_result($result);
+                        mysqli_close($iden);
                      } ?>
                             </select>
                         </div>

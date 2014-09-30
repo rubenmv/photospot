@@ -13,12 +13,12 @@
 	$sentencia = "SELECT u.*, p.NomPais FROM usuarios u
 					LEFT JOIN paises p ON p.IdPais = u.pais
 					WHERE NomUsuario = '$usuario'";
-	$result = mysql_query($sentencia, $iden);
+	$result = mysqli_query($iden, $sentencia);
 
 	if($result) {
-		$row = mysql_fetch_array($result);
-		mysql_free_result($result);
-		mysql_close($iden);
+		$row = mysqli_fetch_array($result);
+		mysqli_free_result($result);
+		mysqli_close($iden);
 
 		$fecha = $row['FNacimiento'];
  ?>

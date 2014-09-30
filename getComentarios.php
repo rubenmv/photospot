@@ -69,12 +69,12 @@
 					LIMIT $max_comentarios_pagina";
 	}
 
-	$result = mysql_query($sentencia, $iden);
+	$result = mysqli_query($iden, $sentencia);
 
-	if($result && mysql_num_rows($result) > 0) {
+	if($result && mysqli_num_rows($result) > 0) {
 		// Si hay resultados, los guardamos en un vector de objetos JSON
 		$comentarios = array();
-		for ($i=0; $i < $max_comentarios_pagina && $row = mysql_fetch_array($result); $i++) {
+		for ($i=0; $i < $max_comentarios_pagina && $row = mysqli_fetch_array($result); $i++) {
 			$comentario = array(  'id' => $row['IdComentario'],
 							'foto' => $row['IdFoto'],
 							'usuario' => $row['NomUsuario'],
@@ -87,18 +87,18 @@
 
 		// Si los resultados obtenidos indican que hay al menos un comentario mas
 		$respuesta['last'] = true;
-		if(mysql_num_rows($result) > $max_comentarios_pagina) {
+		if(mysqli_num_rows($result) > $max_comentarios_pagina) {
 			$respuesta['last'] = false;
 		}
 
 		$respuesta['comentarios'] = $comentarios;
 
 		echo json_encode($respuesta);
-		mysql_free_result($result);
+		mysqli_free_result($result);
 	}
 	// No encuentra nada
 	else { echo "false"; }
 
-	if(isset($iden)) { mysql_close($iden); }
+	if(isset($iden)) { mysqli_close($iden); }
 	exit;
 ?>

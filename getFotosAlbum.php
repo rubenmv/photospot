@@ -16,17 +16,17 @@
                     ORDER BY f.Fecha DESC
                     LIMIT $first, $limit";
 
-    $result = mysql_query($sentencia, $iden);
+    $result = mysqli_query($iden, $sentencia);
 
-    if($result && mysql_num_rows($result) != 0) {
+    if($result && mysqli_num_rows($result) != 0) {
         // Si hay resultados, los guardamos en un vector de objetos JSON
         $output = $fotos = array();
 
         // Si los resultados obtenidos indican que quedan fotos
-        if(mysql_num_rows($result) > $maxFotos) { $output['last'] = $first; } // Ultima fila a imprimir
+        if(mysqli_num_rows($result) > $maxFotos) { $output['last'] = $first; } // Ultima fila a imprimir
         else { $output['last'] = true; } // No quedan fotos
 
-        for ($i=0; $i < $maxFotos && $row = mysql_fetch_array($result); $i++) {
+        for ($i=0; $i < $maxFotos && $row = mysqli_fetch_array($result); $i++) {
             $foto = array(  'id' => $row['IdFoto'],
                             'titulo' => $row['TituloFoto'],
                             'fecha' => $row['Fecha'],
@@ -42,9 +42,9 @@
         $outJSON = json_encode($output);
 
         echo $outJSON;
-        mysql_free_result($result);
+        mysqli_free_result($result);
     }
     else { echo "false"; }
-    if(isset($iden)) { mysql_close($iden); }
+    if(isset($iden)) { mysqli_close($iden); }
     exit;
  ?>

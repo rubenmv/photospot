@@ -69,10 +69,10 @@
 					$usuario = $_SESSION['sesion'];
 					// Obtenemos la id del usuario
 					$sentencia = "SELECT IdUsuario FROM usuarios WHERE NomUsuario = '$usuario'";
-					$result = mysql_query($sentencia, $iden);
+					$result = mysqli_query($iden, $sentencia);
 					if ($result) {
-						$row = mysql_fetch_array($result);
-						mysql_free_result($result);
+						$row = mysqli_fetch_array($result);
+						mysqli_free_result($result);
 
 						$sentencia = "INSERT INTO `albumes` (`Titulo`, `Descripcion`, `Pais`, `Usuario`) VALUES
 									('$titulo', $desc, $pais, $row[IdUsuario])";
@@ -117,16 +117,16 @@
 					// Recogemos todas sus fotos asociadas para borrarlas despues
 					// Foto de usuario
 					$sentencia = "SELECT Foto FROM usuarios WHERE NomUsuario = '$usuario'";
-					$result = mysql_query($sentencia, $iden);
-					$row = mysql_fetch_array($result);
+					$result = mysqli_query($iden, $sentencia);
+					$row = mysqli_fetch_array($result);
 					$avatar = $row['Foto'];
-					mysql_free_result($result);
+					mysqli_free_result($result);
 					// Fotos de albumes
 					$sentencia = "SELECT Fichero FROM fotos, albumes, usuarios
 									WHERE Album = IdAlbum
 									AND Usuario = IdUsuario
 									AND NomUsuario = '$usuario'";
-					$fotosAlbumes = mysql_query($sentencia, $iden);
+					$fotosAlbumes = mysqli_query($iden, $sentencia);
 
 					// Como el nombre de usuario es único, lo utilizamos para borrarlo
 					$sentencia = "DELETE FROM usuarios WHERE NomUsuario = '$usuario'";
@@ -169,7 +169,7 @@
 
 		// Si la validación se ha pasado EJECUTAMOS LA SENTENCIA SQL
 		if ($valida) {
-			$result = mysql_query($sentencia, $iden);
+			$result = mysqli_query($iden, $sentencia);
 
 			// Si la sentencia falla, redirigimos con error 3 (Hubo un problema)
 			if (!$result) {
@@ -181,15 +181,15 @@
 				if(isset($foto) && $foto != 'NULL') {
 					// Y estamos en los casos de registro
 					if($id == 5) {
-						$ruta = $avatarDir.mysql_insert_id().'-'.$foto;
+						$ruta = $avatarDir.mysqli_insert_id().'-'.$foto;
 						$foto = "'$ruta'";
 					}
 					// Cuando es una modificacion
 					else if ($id == 15) {
 						$sentencia = "SELECT IdUsuario, Foto FROM usuarios WHERE NomUsuario = '$nombre'";
-						$result = mysql_query($sentencia, $iden);
-						$row = mysql_fetch_array($result);
-						mysql_free_result($result);
+						$result = mysqli_query($iden, $sentencia);
+						$row = mysqli_fetch_array($result);
+						mysqli_free_result($result);
 						// Hacemos unlink solo cuando exista foto
 						if($row['Foto'] !== NULL) { unlink($row['Foto']); }
 
@@ -214,7 +214,7 @@
 						// Hacemos el update sobre el usuario recien creado
 						$sentencia = "UPDATE usuarios SET Foto = $foto
 									  WHERE NomUsuario = '$nombre'";
-						$result = mysql_query($sentencia, $iden);
+						$result = mysqli_query($iden, $sentencia);
 
 						// Si la query ha funcionado
 						if($result) {
@@ -244,10 +244,10 @@
 						if($avatar !== NULL) {
 							unlink($avatar);
 						}
-						while ($row = mysql_fetch_array($fotosAlbumes)) {
+						while ($row = mysqli_fetch_array($fotosAlbumes)) {
 							unlink($row['Fichero']);
 						}
-						mysql_free_result($fotosAlbumes);
+						mysqli_free_result($fotosAlbumes);
 
 						// Borra todas las variables de sesión
 						$_SESSION = array();
@@ -277,7 +277,7 @@
 	}
 
 	if(isset($iden))
-		mysql_close($iden);
+		mysqli_close($iden);
 
 	header("Location: http://$host$uri/$extra");
 	exit;

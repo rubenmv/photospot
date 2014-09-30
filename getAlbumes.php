@@ -11,18 +11,18 @@
                             LEFT JOIN paises p ON a.Pais = p.IdPais
                         WHERE a.Usuario = u.IdUsuario AND u.NomUsuario = '$usuario'
                     LIMIT $first, $limit";
-    $result = mysql_query($sentencia, $iden);
+    $result = mysqli_query($iden, $sentencia);
 
     // Se han encontrado albumes
-    if($result && mysql_num_rows($result) != 0) {
+    if($result && mysqli_num_rows($result) != 0) {
         // Si hay resultados, los guardamos en un vector de objetos JSON
         $output = $albumes = array();
 
         // Si los resultados obtenidos indican que quedan fotos
-        if(mysql_num_rows($result) > $maxAlbumes) { $output['last'] = $first; } // Ultima fila a imprimir
+        if(mysqli_num_rows($result) > $maxAlbumes) { $output['last'] = $first; } // Ultima fila a imprimir
         else { $output['last'] = true; } // No quedan fotos
 
-        for ($i=0; $i < $maxAlbumes && $row = mysql_fetch_array($result); $i++) {
+        for ($i=0; $i < $maxAlbumes && $row = mysqli_fetch_array($result); $i++) {
             // Para cada álbum buscamos una foto para su portada. Será la última foto introducida.
             $sentencia =   "SELECT Fichero
                                 FROM fotos
@@ -30,12 +30,12 @@
                             ORDER BY Fecha DESC
                             LIMIT 1";
 
-            $result2 = mysql_query($sentencia, $iden);
+            $result2 = mysqli_query($iden, $sentencia);
             // Si hay fotos
-            if($result2 && mysql_num_rows($result2) != 0) {
-                $portada = mysql_fetch_array($result2);
+            if($result2 && mysqli_num_rows($result2) != 0) {
+                $portada = mysqli_fetch_array($result2);
                 $portada = "$portada[Fichero]";
-                mysql_free_result($result2);
+                mysqli_free_result($result2);
             }
             // En caso de no haber fotos, ponemos la imagen por defecto
             else { $portada = "files/album-default.png"; }
@@ -54,11 +54,11 @@
         $outJSON = json_encode($output);
 
         echo $outJSON;
-        mysql_free_result($result);
+        mysqli_free_result($result);
     }
     // No encuentra nada
     else { echo "false"; }
 
-    if(isset($iden)) { mysql_close($iden); }
+    if(isset($iden)) { mysqli_close($iden); }
     exit;
 ?>

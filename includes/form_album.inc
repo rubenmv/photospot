@@ -8,7 +8,7 @@ require_once("connectBD.inc");
 // Usuario de la sesion
 $sessionUser = $_SESSION['sesion'];
 $sentencia = "SELECT IdAlbum, Titulo FROM albumes a, usuarios u WHERE NomUsuario = '$sessionUser' AND Usuario = IdUsuario";
-$result = mysql_query($sentencia, $iden);
+$result = mysqli_query($iden, $sentencia);
 
 // Solo se muestra el selector si se ha encontrado algún álbum
 if($result) {
@@ -19,11 +19,11 @@ if($result) {
 		<select id="album" name="album" class="required" onchange="resetError(this);">
 			<option value="0" selected="selected">[Escoge un álbum]</option>
 			<?php // El resto de álbumes a través de la BD
-				while($row = mysql_fetch_array($result)) {
+				while($row = mysqli_fetch_array($result)) {
 					echo "<option value=".$row['IdAlbum'].">".$row['Titulo']."</option>";
 				}
 				// Libera memoria del resultado y cerrar
-				mysql_free_result($result);
+				mysqli_free_result($result);
 			?>
 		</select>
 	</div>

@@ -9,10 +9,10 @@
 
 		// Recupera todos los álbumes del usuario en sesión
 		$sentencia = "SELECT * FROM albumes, usuarios WHERE Usuario = IdUsuario AND NomUsuario = '$usuario'";
-		$result = mysql_query($sentencia, $iden);
+		$result = mysqli_query($iden, $sentencia);
 
-		if($result && mysql_num_rows($result) != 0) {
-			mysql_free_result($result);
+		if($result && mysqli_num_rows($result) != 0) {
+			mysqli_free_result($result);
 ?>
 
 	<!-- Formulario de registro	-->
@@ -72,7 +72,7 @@
 	}
 
 	if(isset($iden)) {
-		mysql_close($iden);
+		mysqli_close($iden);
 	}
 	?>
 </section>

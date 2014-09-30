@@ -19,14 +19,14 @@
 		$sentencia = "SELECT Clave, Foto FROM usuarios WHERE NomUsuario = '$usuario'";
 
 		// Guardamos el resultado
-		$result = mysql_query($sentencia, $iden);
+		$result = mysqli_query($iden, $sentencia);
 
 		// Si todo va bien y existe el usuario
-		if($result && mysql_num_rows($result) != 0) {
+		if($result && mysqli_num_rows($result) != 0) {
 			// Recogemos la clave y podemos liberar/cerrar
-			$info = mysql_fetch_array($result);
-			mysql_free_result($result);
-			mysql_close($iden);
+			$info = mysqli_fetch_array($result);
+			mysqli_free_result($result);
+			mysqli_close($iden);
 
 			// El password es correcto
 			if($info['Clave'] == $pass) {
