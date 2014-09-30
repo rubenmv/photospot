@@ -24,6 +24,8 @@ En cualquier caso cabe comentar que ha sido realizado por un novato y probableme
 * html5shiv
 * TimbThumb para miniaturas
 
+![screenshot](screenshot.jpg)
+
 Instrucciones
 -------------
 Si se desea poner en marcha la web para comprobar su funcionamiento mi recomendación es utilizar XAMPP (http://www.apachefriends.org/en/xampp.html). Simplemente abría que mover la carpeta del proyecto al directorio 'htdocs' de la instalación de xampp y antes que nada acceder a PHPMyAdmin y crear la base de datos llamada "ps_bd" e importar su contenido mediante el fichero ps_bd.sql, de este manera se creará la estructura de datos para hacer funcionar la página con el usuario de prueba y las fotos de muestra incluidas.
