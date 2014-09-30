@@ -1,0 +1,839 @@
+/* LESSCSS COLORS */
+@blanco:    #FFFFFF;
+@negro:     #000000;
+@gris-1:    #939393;
+@gris-2:    #B6B6B6;
+@gris-3:    #C6C6C6;
+@gris-4:    #EEEEEE;
+@verde-1:   #669652;
+@verde-2:   #ABC476;
+@verde-3:   #C4D898;
+@sombra:    #666666;
+@sombra-3:  #333333;
+@borde-comentarios: #DDDDDD;
+@fondo-claro: #FAFAFA;
+@link: #305D84;
+
+/* LESSCSS MIXINS */
+.bold { font-weight: bold !important; }
+.italic { font-style: italic !important; }
+.hidden { display: none !important; }
+.small { font-size: 0.9em !important; }
+.big {font-size: 1.8em !important;}
+.centrar { margin: 0 auto !important; }
+.wide { width: 95% !important; }
+.align-left { text-align: left !important; }
+.inline-block { display: inline-block !important; }
+.transparent { opacity: 0 !important; }
+.text-overflow {
+	white-space: nowrap;
+	overflow: hidden;
+
+	-ms-text-overflow: ellipsis;
+	-o-text-overflow: ellipsis;
+	text-overflow: ellipsis;
+}
+// Aplica un gradiente en base a dos colores
+.bg-gradiente(@color1: #FAFAFA, @color2: #FAFAFA) {
+	background: @color1;
+	background: -webkit-gradient(linear, left top, left bottom, from(@color2), to(@color1));
+	background: -webkit-linear-gradient(top, @color2, @color1);
+	background: -moz-linear-gradient(top, @color2, @color1);
+	background: -ms-linear-gradient(top, @color2, @color1);
+	background: -o-linear-gradient(top, @color2, @color1);
+}
+// Aplica el sombreado en base a [x,y,z] y el color
+// A [x,y,z] se le deben indicar las unidades (px, %, etc.)
+.sombreado(@x: 0, @y: 0, @z: 0, @color: #000000) {
+	-webkit-box-shadow: @x @y @z @color;
+	-moz-box-shadow: @x @y @z @color;
+	box-shadow: @x @y @z @color;
+}
+// Aplica la transicion a la propiedad indicada con un tiempo y timing
+.transicion(@propiedad: all, @duracion: 0s, @timing: ease) {
+	-webkit-transition: @propiedad @duracion @timing;
+	-moz-transition: @propiedad @duracion @timing;
+	-ms-transition: @propiedad @duracion @timing;
+	-o-transition: @propiedad @duracion @timing;
+	transition: @propiedad @duracion @timing;
+}
+// Resaltado de comentarios
+.resaltado {
+	background-color: (@fondo-claro * 0.94) !important;
+}
+// Para navegadores que no soportan box-shadow
+.no-boxshadow {
+	border-right: #8A8A8A 2px solid;
+	border-bottom: #8A8A8A 2px solid;
+}
+
+html {
+	background: #FAFAFA url(../img/debut_light.png) repeat fixed left top;
+}
+body {
+	max-width: 1024px;
+	min-width: 480px;
+	margin: auto;
+	margin-top: 10px;
+	/* Tipografia general */
+	font: 400 0.8em/1.2 'Open Sans', sans-serif;
+	font-weight: 600;
+}
+
+/* -------
+   ENLACES
+   ------- */
+
+a {
+	color: @link;
+	text-decoration: none;
+	&:focus { -moz-outline-style: none; outline: none;}
+	&:visited { color: #813386; }
+}
+header a {
+	color: @blanco;
+}
+
+/* -------
+   TITULOS
+   ------- */
+h1{
+	font: 400 3em/1.2 'Bitter', Georgia, serif;
+}
+h2, h3, h4 {
+	font: 400 2.5em/1.2 'Bitter', Georgia, serif;
+}
+
+h1 {
+	display: inline-block;
+	margin-right: 20px;
+	color: @blanco;
+}
+
+h2 {
+	display: inline-block;
+	margin-top: 12px;
+	font-size: 1.6em;
+}
+
+h3 {
+	margin: 0 0 10px 0;
+	font-size: 2.0em;
+
+	color: #222;
+	text-shadow: 0 0 5px @sombra;
+
+	a, a:visited {
+		color: #666;
+	}
+}
+
+/* Titulo de fotos y subsecciones */
+h4 {
+	font-size: 1.8em;
+}
+
+/* -----------
+   FORMULARIOS
+   ----------- */
+
+.form-page {
+	display: block;
+	width: 80%;
+	margin: auto;
+}
+
+fieldset { border: 0; }
+legend { display: none; }
+
+input, select, textarea {
+	border: 1px solid #BFBFBF;
+	border-radius: 2px;
+	padding-left: 3px;
+	vertical-align: middle;
+	.transicion(background-color, 0.15s, ease-in-out);
+}
+
+input[type="text"], input[type="password"] {
+	width: 200px;
+}
+
+select {
+	min-width: 50px;
+	max-width: 200px;
+}
+
+form input:focus, form select:focus, form textarea:focus, form .radio:focus {
+	outline: none;
+	border-color: @verde-1;
+	.sombreado(0, 0, 5px, @verde-1);
+}
+
+.fGrupo { margin: 20px 10px; }
+
+/* Alineamos las label de nivel 1 con los div */
+.fGrupo > label, .fGrupo div {
+	display: inline-block;
+	*display: inline; //IE7
+	*float: left;
+	vertical-align: top;
+}
+
+.fGrupo > label {
+	width: 30%;
+	margin-right: 20px;
+	text-align: right;
+	font-weight: bold;
+}
+// label de nivel 2, alineados a mitad con los select/radio/etc
+.label2, .radio { vertical-align: middle; }
+
+// label de formulario de comentarios nuevos
+#new-comment-help { width: 100%; text-align: left; }
+.controls { width: 60%; }
+/* Formulario de acceso en header */
+#form-login input:not([type="checkbox"]) { width: 100px; }
+#form-login .fGrupo {
+	display: inline-block;
+	vertical-align: top;
+	margin: 0;
+	margin-left: 5px;
+}
+#form-login .recordar,
+#form-login .label1 {
+	display: block;
+}
+
+.recordar { margin-top: 5px; }
+
+/* Formulario de votar foto en detalle */
+#form-votar { margin-top: 5px; }
+
+/* Formulario de envio de comentario */
+form#form-comentario {
+	width: 100%;
+
+	textarea {
+		display: block;
+		width: 50%;
+		height: 80px;
+	}
+}
+
+// Enlaces de reseteo de campos
+.reset-link {
+	.italic;
+	.small;
+
+	&:visited {
+		color: @link;
+	}
+}
+
+/* Adicionales de los formularios */
+.fAyuda {
+	display: block;
+	color: #444;
+	font-style: italic;
+	font-size: 0.9em;
+	margin-bottom: 1px;
+	margin-top: 5px;
+}
+.fError {
+	display: inline-block;
+	color: #CC0000;
+	background-color: #FAFAFA;
+	border: 1px solid #CC0000;
+	padding: 1px 3px;
+	font-size: 0.9em;
+	margin-left: 10px;
+}
+.input-error {
+	background-color: #FCF2F2;
+	border-color: #CC0000;
+	.sombreado(0, 0, 5px, #CC0000);
+}
+/* Los errores que vienen desde el PHP */
+p.fError { display: block; width: 40%; text-align: center; margin: auto; }
+
+span.filename { margin-left: 10px; }
+
+/* -------
+   BOTONES
+   ------- */
+.boton {
+	padding: 3px 8px;
+	font-size: 1em;
+	font-weight: bold;
+	color: @blanco;
+	text-shadow: rgba(0,0,0,.4) 0 1px 0;
+	text-decoration: none;
+	vertical-align: middle;
+
+	border: 0 solid #d5f797;
+
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+
+	.sombreado(0, 0, 1px, @verde-1);
+
+	.bg-gradiente(@verde-1, @verde-2);
+
+	&:hover {
+		color: @blanco;
+		.bg-gradiente(@verde-1, @verde-3);
+	}
+	&:active { background: @verde-1; }
+	&:visited { color: @blanco; }
+}
+
+.boton-small { padding: 2px 8px; }
+
+/* Botones de tipo secundario, de cancelación */
+.botonCancel {
+	margin-left: 15px;
+	border: 0 solid #efefef;
+
+	.sombreado(0, 0, 2px, @gris-1);
+	.bg-gradiente(@gris-1, @gris-2);
+
+	&:hover {
+		color: @blanco;
+		.bg-gradiente(@gris-1, @gris-3);
+	}
+	&:active { color: @gris-1; }
+}
+
+/* TABLAS */
+#tRegistro {
+	margin: auto !important;
+}
+
+table {
+	border-collapse: collapse;
+
+	th {
+		.big;
+		.bold;
+		padding: 15px 0 15px 0;
+		text-align: left;
+	}
+
+	td {
+		background-color: #FAFAFA;
+
+		padding: 10px;
+		min-width: 200px;
+
+	}
+
+	td {
+		border: 1px solid #DADADA;
+	}
+}
+
+.cLeft {
+	background-color: #719d58;
+	text-align: right;
+	color: @blanco;
+	font-weight: bold;
+}
+
+/* -----------------
+   HEADER / CABECERA
+   ----------------- */
+#header {
+	clear: both;
+}
+
+.bg-dark {
+	background: @sombra-3 url(../img/debut_dark.png) repeat fixed left top;
+	color: @blanco;
+	overflow: hidden;
+
+	.sombreado(0, 0, 5px, @sombra-3);
+
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+
+	a {
+		text-decoration: none;
+		&:link, &:visited {
+			color: @blanco;
+		}
+		&:hover {
+			color: #98F065;
+		}
+	}
+
+}
+
+#titulos {
+	display: inline-block;
+	margin-left: 20px;
+	margin-top: 5px;
+
+}
+#zona-info-foto {
+	margin-left: 10px;
+}
+
+/* --------------
+   MENU PRINCIPAL
+   -------------- */
+.main-nav ul{
+	color: @blanco;
+	margin: 0 auto;
+	padding: 0;
+	float: left;
+	clear: both;
+	width: 100%;
+	font-size: 1.2em;
+	font-weight: bold;
+	list-style: none;
+	text-align: center;
+
+	li {
+		float: left;
+		width: 33.2222%;
+		border-top: 1px solid @sombra;
+		border-left: 1px solid @sombra;
+
+		.transicion(background-color, 0.3s, ease-in-out);
+
+		&:hover {
+			background-color: @sombra;
+		}
+
+		a {
+			display: block;
+			width: 100%;
+			padding: 5px 0 5px 0;
+		}
+	}
+}
+
+.info-registro {
+	width: 80%;
+	margin: 0 auto;
+	margin-top: 10px;
+	padding: 10px;
+	line-height: 1.5em;
+	border:1px solid #AAA;
+	background-color: #FCFCED;
+	overflow: hidden;
+
+	p {
+		text-align: center;
+	}
+}
+
+/* Información de usuario logado */
+#zona-usuario {
+	float: right;
+	text-align: right;
+	margin: 0;
+	padding: 10px;
+
+	a {
+		font-size: 0.9em;
+		font-weight: bold;
+		margin: 0 auto;
+	}
+}
+
+/* ---------
+   CONTENIDO
+   --------- */
+#content {
+	overflow: hidden;
+	clear: both;
+	padding: 10px;
+}
+.ajax-loader {
+	display: block;
+	margin: 50px auto;
+}
+
+/* -------
+   PORTADA
+   ------- */
+#ultimas-fotos, #portada-aside {
+	display: inline-block;
+	vertical-align: top;
+}
+
+#ultimas-fotos {
+	width: 70%;
+}
+
+#destacadas a { color: #222 !important; }
+
+#lista-destacadas {
+	overflow: hidden;
+	margin-bottom: 10px;
+	border: 1px solid @borde-comentarios;
+	background-color: @fondo-claro;
+
+	a { color: @negro; }
+
+	figcaption { padding: 5px; }
+}
+
+.lista-resumen {
+	margin: 0 auto;
+
+	li {
+		vertical-align: top;
+		display: inline-block;
+		width: 31%;
+		overflow: hidden;
+		margin-bottom: 2px;
+		padding: 5px;
+
+		&:nth-child(even) {
+			background: @sombra-3;
+			border: 1px solid #222;
+
+			.figcaption {
+				a { color: #EEE; }
+				h4 { text-shadow: 0 0 2px #EEE; }
+			}
+		}
+
+		&:nth-child(odd) {
+			background: #EEE;
+			border: 1px solid #CCC;
+
+			.figcaption {
+				a { color: @sombra-3; }
+				h4 { text-shadow: 0 0 2px @sombra-3; }
+			}
+		}
+
+		/*  Efectos sobre las imágenes en las listas */
+		img {
+			width: 100%;
+			display: block;
+			margin: 0 auto;
+		}
+	}
+
+	figure {
+		position: relative;
+	}
+
+	figcaption {
+		text-align: left;
+		h4 {margin: 0.2em 0.1em;}
+		p { font-weight: 600; }
+	}
+}
+
+// Icono que enlaza con el editor
+.edit-icon {
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	a {
+		width:  32px;
+		height: 32px;
+		display: block;
+		background-image: url('../img/edit.png');
+
+		&:hover {
+			background-image: url('../img/edith.png');
+		}
+	}
+}
+
+/* Las descripciones figcaption de la imagenes se cortan cuando no caben */
+.figcaption p, .figcaption h4 { .text-overflow; }
+
+/* ------------
+   DETALLE FOTO
+   ------------ */
+.detalle-foto {
+	overflow: hidden;
+	text-align: center;
+
+	img {
+		max-width: 95%;
+		border-radius: 10px;
+		.sombreado(2px, 2px, 3px, @sombra-3);
+	}
+}
+
+/* Estilo de las cajas de la pagina de detalle */
+.detalle-info {
+	display: inline-block;
+	margin-top: 10px;
+	padding: 5px;
+
+	background-color: #EFEFEF;
+	border: 2px solid @sombra;
+	border-radius: 5px;
+
+	p { margin-top: 10px; }
+}
+
+/* -------------------------------
+   COMENTARIOS (PORTADA Y DETALLE)
+   ------------------------------- */
+#section-comentarios {
+	width: 70%;
+	margin: 0 auto;
+	margin-top: 20px;
+}
+
+#form-comentario { margin-bottom: 20px; }
+
+#portada-aside {
+	width: 29%;
+
+	#lista-comentarios li {
+		max-height: 50px;
+		a {
+			color: @negro;
+			display: block;
+			.text-overflow;
+		}
+		&:hover { .resaltado }
+	}
+}
+
+.comentario {
+	padding: 2%;
+	margin: 0;
+	text-align: left;
+	background-color: @borde-comentarios + 20;
+	border-bottom: 1px solid @borde-comentarios;
+	border-right: 1px solid @borde-comentarios;
+	border-top: 1px solid white;
+}
+
+/* --------------------------------
+   PAGINACION (COMENTARIOS Y FOTOS)
+   -------------------------------- */
+.enlaces-paginas li {
+	display: inline-block;
+	margin-right: 10px;
+}
+
+/* ---------------
+   EDITOR DE FOTOS
+   --------------- */
+#canvas {
+	display: inline-block;
+	border: 5px solid #333;
+	&:hover, &:active { cursor: crosshair; }
+}
+#form-edit-controls {
+	display: inline-block;
+	width: 30%;
+	margin-left: 10px;
+	vertical-align: top;
+}
+
+/* -------------
+   DETALLE ALBUM
+   ------------- */
+.infoAlbum {
+	padding: 5px;
+	margin-bottom: 15px;
+}
+.boton-nuevo-album {
+	display: inline-block;
+	margin-bottom: 10px;
+}
+
+/* ----------
+   PAGINACION
+   ---------- */
+#paginacion {
+	margin-top: 10px;
+	text-align: center;
+	p {color: #AAA;}
+}
+
+/* ----------------
+   PANEL DE CONTROL
+   ---------------- */
+.panel-control { text-align: center; }
+.panel-control > h3 { text-align: left; }
+.nav-aside {
+	display: inline-block;
+	width: 25%;
+	vertical-align: top;
+	margin-right: 5%;
+	margin-top: 20px;
+
+	ul {
+		background-color: #333;
+		color: @blanco;
+		padding: 0;
+
+		font-size: 1.2em;
+		font-weight: bold;
+		list-style: none;
+		text-align: center;
+
+		li {
+		display: block;
+		width: 100%;
+		border-top: 1px solid @sombra;
+		border-left: 1px solid @sombra;
+
+		.transicion(background-color, 0.3s, ease-in-out);
+
+		&:hover {
+			background-color: @sombra;
+		}
+
+		a {
+			color: @blanco;
+			display: block;
+			width: 100%;
+			padding: 5px 0 5px 0;
+		}
+	}
+	}
+
+}
+
+#info-usuario {
+	display: inline-block;
+	vertical-align: middle;
+}
+
+#tDatos {
+	display: inline-block;
+}
+
+.avatarGrande {
+	width: 150px;
+}
+
+/* ----------------------------
+   HISTORIAL DE FOTOS VISITADAS
+   ---------------------------- */
+.historial {
+	display: inline-block;
+}
+
+#tHistorial td {
+	width: 25em;
+}
+
+/* ---------------------
+   INFORMACIÓN DEL SITIO
+   --------------------- */
+section.informacion {
+	text-align: center;
+	margin: 10px auto;
+	width: 50%;
+	background-color: #EAEAEA;
+	border: 1px solid #EAEAEA;
+	.sombreado(0, 0, 15px, #EAEAEA);
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+
+	p {	margin: 10px auto; }
+}
+
+/* -----------
+   PIE DE PAGINA
+   ----------- */
+.main-footer {
+	clear: both;
+	font-weight: bold;
+	bottom: 0;
+	margin-top: 20px;
+	margin-bottom: 10px;
+	padding: 10px;
+
+	p {
+		padding: 0;
+		margin: 0;
+	}
+
+}
+
+/* -----------------
+   RESPONSIVE DESIGN
+   ----------------- */
+@media screen and (max-width: 900px) {
+	.main-nav ul li {
+		width: 33%;
+	}
+
+	h2 {
+		font-size: 1.2em;
+	}
+
+	#fComentario {
+		 .fGrupo {
+			width: 95%;
+		}
+		textarea {
+			width: 95%;
+			height: 150px;
+		}
+	}
+
+	#ultimas-fotos .lista-resumen {
+		width: 100%;
+		li { width: 30%; }
+	}
+
+}
+
+@media screen and (max-width: 760px) {
+	h2 {
+		display: none;
+	}
+
+	#portada-aside, #ultimas-fotos {
+		display: block;
+		width: 100%;
+	}
+
+	#ultimas-fotos .lista-resumen {
+		width: 100%;
+		li { width: 31%; }
+	}
+
+	#destacadas {
+		display: none;
+	}
+
+	section.informacion { width: 80%; }
+
+}
+
+@media screen and (max-width: 600px) {
+	#titulos {
+		display: block;
+		margin: 0 auto;
+		text-align: center;
+	}
+	/* Formularios */
+	form {
+		width: 100%;
+	}
+	.fGrupo > .label1 {
+		width: 100%;
+		margin: 0;
+		text-align: left;
+	}
+	.fGrupo > .controls {
+		width: 100%;
+	}
+
+	#ultimas-fotos .lista-resumen li {
+		width: 47%;
+	}
+}

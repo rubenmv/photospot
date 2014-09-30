@@ -1,0 +1,51 @@
+BASE DE DATOS
+=============
+
+Las inserciones en esta práctica se realizan directamente
+en la base de datos por MySQL.
+
+Crear base de datos "pibd":
+
+-	usuarios	
+		IdUsuario:			int(11)
+		NomUsuario: 		varchar(15)
+		Clave:				varchar(70). Necesita unos 64 caracteres para el
+										 hash de tipo SHA256.
+		Email:				varchar(256)
+		Sexo:				tinyint(4) [0 = hombre, 1 = mujer]
+		FNacimiento:		date
+		Ciudad:				varchar(30)
+		Pais:				smallint(6)
+		Foto:				varchar(256)
+		FRegistro:			timestamp. Se utiliza NOW() para introducir fecha y hora.
+
+-	paises
+		IdPais:				smallint(6)
+		NomPais:			varchar(30)
+
+-	albumes
+		IdAlbum:			int(11)
+		Titulo:				varchar(30)
+		Descripcion:		varchar(256)
+		Fecha:				date
+		Pais:				smallint(6)
+		Usuario:			int(11)
+
+-	fotos
+		IdFoto:				int(11)
+		Titulo:				varchar(30)
+		Fecha:				date
+		Pais:				smallint(6)
+		Album:				int(11)
+		NumVotos:			int(11)
+		PuntuacionTotal:	int(11)
+		Fichero:			varchar(256)
+		FRegistro:			timestamp. Se utiliza NOW() para introducir fecha y hora.
+
+-	comentarios
+		IdComentario:		int(11)
+		IdFoto:				int(11)
+		IdUsuario:			int(11)
+		Texto:				varchar(150)
+		Fecha:				datetime
+

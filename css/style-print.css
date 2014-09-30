@@ -1,0 +1,193 @@
+/*	VERSION NORMAL
+	Elementos ordenados por aparición
+*/
+
+/*Resetear lo valores por defecto de los navegadores*/
+html {
+	margin: 0;
+	padding: 0;
+	border: none;
+}
+
+/* Elementos ocultos */
+nav, #fAcceso, #informacionRegistro, .boton, #linkMapa {
+	display: none;
+}
+
+body {
+	background: none;
+	margin: 0 auto;
+	padding: 0;
+	border: none;
+
+	/* Tipografia general */
+	font: 10pt Arial, Helvetica, sans-serif;
+}
+
+/* ---------------
+   TIPOGRAFIAS TITULOS
+   --------------- */
+
+h1 {
+	font: 400 18pt Georgia, serif;
+}
+
+h2, h3, #subtitle {
+	font: 400 12pt 'Bree Serif', Georgia, serif;
+}
+
+h1, #subtitle {
+	margin: 0 auto;
+}
+
+#subtitle {
+	font-size: 10pt;
+	border-bottom: 1px solid black;
+}
+
+/* ---------------
+   ENLACES GENERAL
+   --------------- */
+
+a, a:visited {
+	color: #000;
+	text-decoration: none;
+}
+
+/* -----------
+   FORMULARIOS
+   ----------- */
+
+form fieldset {
+	border: none;
+}
+
+form legend {	
+	display: none;
+	font-weight: bold;
+	color: #212121;
+}
+
+form .fGrupo {
+	overflow: hidden;
+	margin-bottom: 20px;
+}
+
+.label1 {
+	float: left;
+	text-align: right;
+	font-weight: bold;
+	margin-right: 20px;
+}
+
+#fBusqueda .label1 { width: 5%; }
+#fRegistro .label1 { width: 15%; }
+
+.label2 {
+	font-size: 13px;
+}
+
+form .controls {
+	float: left;
+	width: 70%;
+	overflow: hidden;
+}
+
+form input, form select {
+	outline: none;
+	border: 1px solid #BFBFBF;
+	border-radius: 3px;
+	padding-left: 3px;
+}
+
+/* Configuraciones especificas de formularios */
+#fAcceso {
+	float: right;
+	margin-top: 5px;
+	margin-right: 10px;
+}
+
+#fRegistro, #fBusqueda {
+	margin-top: 20px;
+	margin-bottom: 10px;
+}
+
+/* -----------
+   HEADER
+   ----------- */
+#header {
+	clear: both;
+}
+
+.bg-dark {
+	padding: 0;
+	overflow: hidden;
+}
+
+#titulos {
+	margin: 0 auto;
+}
+
+.subtitle {
+	border-bottom: 1px solid #000;
+}
+
+/* -----------
+   CONTENIDO
+   ----------- */
+#content {
+	overflow: hidden;
+	margin-top: 20pt;
+	clear: both;
+}
+
+img {
+	border: none;
+}
+
+h2 {
+	font-size: 14pt;
+	margin: 0;
+	color: rgb(80, 80, 80);
+}
+
+h3, h3 a {
+	color: #000;
+}
+
+.resumen {
+	float: left;
+	margin: 15px 15px 15px 0;
+	padding: 0px 10pt 0pt 10px;
+	border: 1px solid #DDD;
+	background: none;
+}
+
+.resumen img{
+	width: 250px;
+	height: 150px;
+}
+
+/* ------------
+   DETALLE FOTO
+   ------------ */
+.foto img {
+	width: 90%;
+	border: none;
+	margin-right: 20px;
+}
+
+/* -----------
+   PIE DE PAGINA
+   ----------- */
+#footer {
+	clear: both;
+	font-weight: bold;
+	bottom: 0;
+	border-top: 1px solid black;
+}
+
+#footer p {
+	padding: 0;
+	margin: 0;
+}
