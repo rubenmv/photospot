@@ -34,9 +34,9 @@ Importante: el fichero includes/connectBD.inc debe ser configurado con el usuari
 
 El proyecto está configurado para funcionar en la carpeta htdocs/photospot con el puerto por defecto para localhost (quedaría como http://localhost/photospot/), si se realiza algún cambio y algunas de las miniaturas dejan de funcionar, probablemente sea porque ha cambiado esa dirección del sitio y habría que modificar la RUTABASE al principio del fichero scripts-all.js para que corresponda con la ruta nueva. Esto es debido a que timbthumbs necesita la ruta completa y al cargar por ajax no se puede obtener, solo PHP puede.
 
-Se ha incluido un usuario de prueba con la siguiente información:
-	Nombre de usuario:		test
-	Contraseña de usuario:	Test01
+Se ha incluido un usuario de prueba con la siguiente información:  
+Nombre de usuario:		test  
+Contraseña de usuario:	Test01  
 
 
 Licencia
