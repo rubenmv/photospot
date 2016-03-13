@@ -8,7 +8,7 @@
 		$usuario = $_SESSION['sesion'];
 
 		// Recupera todos los álbumes del usuario en sesión
-		$sentencia = "SELECT * FROM albumes, usuarios WHERE Usuario = IdUsuario AND NomUsuario = '$usuario'";
+		$sentencia = "SELECT * FROM ".$tablePrefix."albumes, ".$tablePrefix."usuarios WHERE Usuario = IdUsuario AND NomUsuario = '$usuario'";
 		$result = mysqli_query($iden, $sentencia);
 
 		if($result && mysqli_num_rows($result) != 0) {

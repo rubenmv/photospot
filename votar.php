@@ -5,7 +5,7 @@
 	$puntos = $_POST['puntos'];
 	
 	// Recogemos los votos y puntuacion actual de la foto
-	$sentencia =   "SELECT NumVotos, PuntuacionTotal FROM fotos
+	$sentencia =   "SELECT NumVotos, PuntuacionTotal FROM ".$tablePrefix."fotos
 						WHERE IdFoto = $idFoto";
 
 	$result = mysqli_query($iden, $sentencia);
@@ -19,7 +19,7 @@
 		mysqli_free_result($result);
 
 		// Actualizamos los campos de la foto
-		$sentencia = "UPDATE fotos SET NumVotos = $numVotos, PuntuacionTotal = $puntuacionTotal
+		$sentencia = "UPDATE ".$tablePrefix."fotos SET NumVotos = $numVotos, PuntuacionTotal = $puntuacionTotal
 						WHERE IdFoto = $idFoto";
 
 		$result = mysqli_query($iden, $sentencia);

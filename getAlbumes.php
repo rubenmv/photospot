@@ -7,8 +7,8 @@
     require_once("includes/connectBD.inc"); // $iden
 
     // Recupera todos los álbumes del usuario en sesión
-    $sentencia =    "SELECT a.*, u.NomUsuario, p.NomPais FROM usuarios u, albumes a
-                            LEFT JOIN paises p ON a.Pais = p.IdPais
+    $sentencia =    "SELECT a.*, u.NomUsuario, p.NomPais FROM ".$tablePrefix."usuarios u, ".$tablePrefix."albumes a
+                            LEFT JOIN ".$tablePrefix."paises p ON a.Pais = p.IdPais
                         WHERE a.Usuario = u.IdUsuario AND u.NomUsuario = '$usuario'
                     LIMIT $first, $limit";
     $result = mysqli_query($iden, $sentencia);
@@ -25,7 +25,7 @@
         for ($i=0; $i < $maxAlbumes && $row = mysqli_fetch_array($result); $i++) {
             // Para cada álbum buscamos una foto para su portada. Será la última foto introducida.
             $sentencia =   "SELECT Fichero
-                                FROM fotos
+                                FROM ".$tablePrefix."fotos
                             WHERE Album = $row[IdAlbum]
                             ORDER BY Fecha DESC
                             LIMIT 1";

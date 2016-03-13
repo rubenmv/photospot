@@ -4,10 +4,10 @@ require_once("../includes/connectBD.inc"); // $iden
 // Las 10 mejores fotos segun su puntuacion media
 $sentencia = 	"SELECT  f.IdFoto, f.Titulo as TituloFoto, f.Fecha, f.NumVotos, f.PuntuacionTotal,
 							f.Fichero, a.Titulo as TituloAlbum, u.NomUsuario, p.NomPais
-					FROM fotos f
-						LEFT JOIN paises p ON p.IdPais = f.Pais
-						LEFT JOIN albumes a ON a.IdAlbum = f.Album
-						LEFT JOIN usuarios u ON a.Usuario = u.IdUsuario
+					FROM ".$tablePrefix."fotos f
+						LEFT JOIN ".$tablePrefix."paises p ON p.IdPais = f.Pais
+						LEFT JOIN ".$tablePrefix."albumes a ON a.IdAlbum = f.Album
+						LEFT JOIN ".$tablePrefix."usuarios u ON a.Usuario = u.IdUsuario
 					WHERE NumVotos != 0
 					ORDER BY (PuntuacionTotal DIV NumVotos) DESC
 					LIMIT 10";

@@ -7,7 +7,7 @@ require_once("connectBD.inc");
 
 // Usuario de la sesion
 $sessionUser = $_SESSION['sesion'];
-$sentencia = "SELECT IdAlbum, Titulo FROM albumes a, usuarios u WHERE NomUsuario = '$sessionUser' AND Usuario = IdUsuario";
+$sentencia = "SELECT IdAlbum, Titulo FROM ".$tablePrefix."albumes a, ".$tablePrefix."usuarios u WHERE NomUsuario = '$sessionUser' AND Usuario = IdUsuario";
 $result = mysqli_query($iden, $sentencia);
 
 // Solo se muestra el selector si se ha encontrado algún álbum

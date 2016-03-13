@@ -19,8 +19,8 @@
 			 * 3. Unimos los comentarios anteriores a este para que aparezcan despues	*/
 			$sentencia= "	(
 							SELECT c. * , u.NomUsuario
-							FROM comentarios c
-							LEFT JOIN usuarios u ON c.IdUsuario = u.IdUsuario
+							FROM ".$tablePrefix."comentarios c
+							LEFT JOIN ".$tablePrefix."usuarios u ON c.IdUsuario = u.IdUsuario
 							WHERE c.IdFoto = $idFoto
 							AND c.IdComentario > $_POST[ref]
 							ORDER BY c.IdComentario
@@ -28,15 +28,15 @@
 							)
 							UNION ALL (
 							SELECT c. * , u.NomUsuario
-							FROM comentarios c
-							LEFT JOIN usuarios u ON c.IdUsuario = u.IdUsuario
+							FROM ".$tablePrefix."comentarios c
+							LEFT JOIN ".$tablePrefix."usuarios u ON c.IdUsuario = u.IdUsuario
 							WHERE c.IdFoto = $idFoto
 							AND c.IdComentario = $_POST[ref]
 							)
 							UNION ALL (
 							SELECT c. * , u.NomUsuario
-							FROM comentarios c
-							LEFT JOIN usuarios u ON c.IdUsuario = u.IdUsuario
+							FROM ".$tablePrefix."comentarios c
+							LEFT JOIN ".$tablePrefix."usuarios u ON c.IdUsuario = u.IdUsuario
 							WHERE c.IdFoto = $idFoto
 							AND c.IdComentario < $_POST[ref]
 							ORDER BY c.IdComentario DESC
@@ -52,8 +52,8 @@
 			// Buscamos un comentario mas del maximo establecido, asi sabemos seguro si es el final
 			$max = $max_comentarios_pagina + 1;
 
-			$sentencia= "SELECT c.*, NomUsuario FROM comentarios c
-						LEFT JOIN usuarios u ON c.IdUsuario = u.IdUsuario
+			$sentencia= "SELECT c.*, NomUsuario FROM ".$tablePrefix."comentarios c
+						LEFT JOIN ".$tablePrefix."usuarios u ON c.IdUsuario = u.IdUsuario
 					WHERE IdFoto = $idFoto
 					ORDER BY Fecha DESC
 					LIMIT $first, $max";
@@ -63,8 +63,8 @@
 	else {
 		$max_comentarios_pagina = 20;
 
-		$sentencia= "SELECT c.*, NomUsuario FROM comentarios c
-						LEFT JOIN usuarios u ON c.IdUsuario = u.IdUsuario
+		$sentencia= "SELECT c.*, NomUsuario FROM ".$tablePrefix."comentarios c
+						LEFT JOIN ".$tablePrefix."usuarios u ON c.IdUsuario = u.IdUsuario
 					ORDER BY Fecha DESC
 					LIMIT $max_comentarios_pagina";
 	}

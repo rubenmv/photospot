@@ -10,8 +10,8 @@
 
 	require_once("includes/connectBD.inc"); // $iden
 	// Recuperamos los datos del nuevo usuario desde la BD
-	$sentencia = "SELECT u.*, p.NomPais FROM usuarios u
-					LEFT JOIN paises p ON p.IdPais = u.pais
+	$sentencia = "SELECT u.*, p.NomPais FROM ".$tablePrefix."usuarios u
+					LEFT JOIN ".$tablePrefix."paises p ON p.IdPais = u.pais
 					WHERE NomUsuario = '$usuario'";
 	$result = mysqli_query($iden, $sentencia);
 

@@ -3,8 +3,8 @@
 	require_once("includes/connectBD.inc");
 
 	$usuario = $_SESSION['sesion'];
-	$sentencia = "SELECT u.*, p.NomPais FROM usuarios u
-					LEFT JOIN paises p ON p.IdPais = u.pais
+	$sentencia = "SELECT u.*, p.NomPais FROM ".$tablePrefix."usuarios u
+					LEFT JOIN ".$tablePrefix."paises p ON p.IdPais = u.pais
 					WHERE NomUsuario = '$usuario'";
 
 	$result = mysqli_query($iden, $sentencia);

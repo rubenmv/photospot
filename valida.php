@@ -40,7 +40,7 @@
 				if ($valida) {
 					// Se cifra el password antes de introducirlo
 					$pass = hash('sha256', $pass);
-					$sentencia = "INSERT INTO `usuarios` (`NomUsuario`, `Clave`, `Email`, `Sexo`, `FNacimiento`, `Ciudad`, `Pais`) VALUES
+					$sentencia = "INSERT INTO `".$tablePrefix."usuarios` (`NomUsuario`, `Clave`, `Email`, `Sexo`, `FNacimiento`, `Ciudad`, `Pais`) VALUES
 								  ('$nombre', '$pass', '$email', $sexo, '$fecha', $ciudad, $pais)";
 				}
 				break;
@@ -68,13 +68,13 @@
 				if ($valida) {
 					$usuario = $_SESSION['sesion'];
 					// Obtenemos la id del usuario
-					$sentencia = "SELECT IdUsuario FROM usuarios WHERE NomUsuario = '$usuario'";
+					$sentencia = "SELECT IdUsuario FROM ".$tablePrefix."usuarios WHERE NomUsuario = '$usuario'";
 					$result = mysqli_query($iden, $sentencia);
 					if ($result) {
 						$row = mysqli_fetch_array($result);
 						mysqli_free_result($result);
 
-						$sentencia = "INSERT INTO `albumes` (`Titulo`, `Descripcion`, `Pais`, `Usuario`) VALUES
+						$sentencia = "INSERT INTO `".$tablePrefix."albumes` (`Titulo`, `Descripcion`, `Pais`, `Usuario`) VALUES
 									('$titulo', $desc, $pais, $row[IdUsuario])";
 					}
 					else { $valida = false; }
@@ -106,7 +106,7 @@
 					$pais = $_POST['pais'];
 
 				if($valida) {
-					$sentencia = "INSERT INTO `fotos` (`Titulo`, `Pais`, `Album`, `Fichero`) VALUES
+					$sentencia = "INSERT INTO `".$tablePrefix."fotos` (`Titulo`, `Pais`, `Album`, `Fichero`) VALUES
 									('$titulo', $pais, $album, '$foto')";
 				}
 				break;
@@ -116,20 +116,20 @@
 					$usuario = $_SESSION['sesion'];
 					// Recogemos todas sus fotos asociadas para borrarlas despues
 					// Foto de usuario
-					$sentencia = "SELECT Foto FROM usuarios WHERE NomUsuario = '$usuario'";
+					$sentencia = "SELECT Foto FROM ".$tablePrefix."usuarios WHERE NomUsuario = '$usuario'";
 					$result = mysqli_query($iden, $sentencia);
 					$row = mysqli_fetch_array($result);
 					$avatar = $row['Foto'];
 					mysqli_free_result($result);
 					// Fotos de albumes
-					$sentencia = "SELECT Fichero FROM fotos, albumes, usuarios
+					$sentencia = "SELECT Fichero FROM ".$tablePrefix."fotos, ".$tablePrefix."albumes, ".$tablePrefix."usuarios
 									WHERE Album = IdAlbum
 									AND Usuario = IdUsuario
 									AND NomUsuario = '$usuario'";
 					$fotosAlbumes = mysqli_query($iden, $sentencia);
 
 					// Como el nombre de usuario es único, lo utilizamos para borrarlo
-					$sentencia = "DELETE FROM usuarios WHERE NomUsuario = '$usuario'";
+					$sentencia = "DELETE FROM ".$tablePrefix."usuarios WHERE NomUsuario = '$usuario'";
 				}
 				// No valida, pero al ser id=14 redirige a index.php (ver más adelante)
 				else { $valida = false; }
@@ -143,7 +143,7 @@
 					// Creamos 2 sentencias distintas dependiendo de si se ha cambiado el password
 					if (isset($pass)) {
 						$pass = hash('sha256', $pass);
-						$sentencia = "UPDATE usuarios SET
+						$sentencia = "UPDATE ".$tablePrefix."usuarios SET
 										NomUsuario = '$nombre',
 										Clave = '$pass',
 										Email = '$email',
@@ -154,7 +154,7 @@
 										WHERE NomUsuario = '$usuario'";
 					}
 					else {
-						$sentencia = "UPDATE usuarios SET
+						$sentencia = "UPDATE ".$tablePrefix."usuarios SET
 										NomUsuario = '$nombre',
 										Email = '$email',
 										Sexo = $sexo,
@@ -186,7 +186,7 @@
 					}
 					// Cuando es una modificacion
 					else if ($id == 15) {
-						$sentencia = "SELECT IdUsuario, Foto FROM usuarios WHERE NomUsuario = '$nombre'";
+						$sentencia = "SELECT IdUsuario, Foto FROM ".$tablePrefix."usuarios WHERE NomUsuario = '$nombre'";
 						$result = mysqli_query($iden, $sentencia);
 						$row = mysqli_fetch_array($result);
 						mysqli_free_result($result);
@@ -212,7 +212,7 @@
 
 					if($id==5 || $id==15) {
 						// Hacemos el update sobre el usuario recien creado
-						$sentencia = "UPDATE usuarios SET Foto = $foto
+						$sentencia = "UPDATE ".$tablePrefix."usuarios SET Foto = $foto
 									  WHERE NomUsuario = '$nombre'";
 						$result = mysqli_query($iden, $sentencia);
 

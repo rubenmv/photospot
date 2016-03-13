@@ -20,7 +20,7 @@
                 // Recogemos los datos del usuario desde la BD
                 $userLogado = $_SESSION['sesion'];
                 require_once("includes/connectBD.inc"); // $iden
-                $sentencia = "SELECT * FROM usuarios WHERE NomUsuario = '$userLogado'";
+                $sentencia = "SELECT * FROM ".$tablePrefix."usuarios WHERE NomUsuario = '$userLogado'";
 
                 $result = mysqli_query($iden, $sentencia);
 
@@ -86,7 +86,7 @@
                     </div>
 
                     <?php // Paises desde la BD
-                    $sentencia = "SELECT IdPais, NomPais FROM paises";
+                    $sentencia = "SELECT IdPais, NomPais FROM ".$tablePrefix."paises";
                     $result = mysqli_query($iden, $sentencia);
 
                     // Solo se muestra el selector si se ha encontrado algún país

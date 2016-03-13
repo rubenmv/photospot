@@ -902,7 +902,7 @@ function procesarAlbumes(){
 			if(respuesta === "false") {
 				var p = document.createElement('p');
 				p.innerHTML = "¡No se han encontrado álbumes!<br />" +
-								  "<a href=\"index.php?content=9\">Crea un álbum.</a><";
+								  "<a href=\"index.php?content=9\">Crea un álbum.</a>";
 				padre.appendChild(p);
 			}
 			// Se han encontrado fotos

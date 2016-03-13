@@ -20,10 +20,10 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `albumes`
+-- Table structure for table `photospot_albumes`
 --
 
-CREATE TABLE IF NOT EXISTS `albumes` (
+CREATE TABLE IF NOT EXISTS `photospot_albumes` (
   `IdAlbum` int(11) NOT NULL AUTO_INCREMENT,
   `Titulo` varchar(30) COLLATE utf8_spanish_ci NOT NULL,
   `Descripcion` varchar(150) COLLATE utf8_spanish_ci DEFAULT NULL,
@@ -36,20 +36,20 @@ CREATE TABLE IF NOT EXISTS `albumes` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=5 ;
 
 --
--- Dumping data for table `albumes`
+-- Dumping data for table `photospot_albumes`
 --
 
-INSERT INTO `albumes` (`IdAlbum`, `Titulo`, `Descripcion`, `Pais`, `Usuario`, `Fecha`) VALUES
+INSERT INTO `photospot_albumes` (`IdAlbum`, `Titulo`, `Descripcion`, `Pais`, `Usuario`, `Fecha`) VALUES
 (3, 'Fotografías', 'Algunas fotografías de prueba. Todas bajo licencia de dominio público', 1, 2, '2013-09-15 10:56:18'),
-(4, 'Más fotos', 'Segundo álbum de fotos', 14, 2, '2013-09-15 11:28:47');
+(4, 'Mis cosas', 'Viajes', 14, 2, '2013-09-15 11:28:47');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `comentarios`
+-- Table structure for table `photospot_comentarios`
 --
 
-CREATE TABLE IF NOT EXISTS `comentarios` (
+CREATE TABLE IF NOT EXISTS `photospot_comentarios` (
   `IdComentario` int(11) NOT NULL AUTO_INCREMENT,
   `IdFoto` int(11) NOT NULL,
   `IdUsuario` int(11) NOT NULL,
@@ -61,10 +61,10 @@ CREATE TABLE IF NOT EXISTS `comentarios` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=10 ;
 
 --
--- Dumping data for table `comentarios`
+-- Dumping data for table `photospot_comentarios`
 --
 
-INSERT INTO `comentarios` (`IdComentario`, `IdFoto`, `IdUsuario`, `Texto`, `Fecha`) VALUES
+INSERT INTO `photospot_comentarios` (`IdComentario`, `IdFoto`, `IdUsuario`, `Texto`, `Fecha`) VALUES
 (5, 4, 2, 'La primera fotografía y el primer comentario', '2013-09-15 10:57:48'),
 (6, 6, 2, 'Muy gracioso el pato', '2013-09-15 11:00:12'),
 (7, 11, 2, 'Buen nadador', '2013-09-15 11:30:52'),
@@ -74,10 +74,10 @@ INSERT INTO `comentarios` (`IdComentario`, `IdFoto`, `IdUsuario`, `Texto`, `Fech
 -- --------------------------------------------------------
 
 --
--- Table structure for table `fotos`
+-- Table structure for table `photospot_fotos`
 --
 
-CREATE TABLE IF NOT EXISTS `fotos` (
+CREATE TABLE IF NOT EXISTS `photospot_fotos` (
   `IdFoto` int(11) NOT NULL AUTO_INCREMENT,
   `Titulo` varchar(30) COLLATE utf8_spanish_ci NOT NULL,
   `Pais` smallint(6) DEFAULT NULL,
@@ -92,10 +92,10 @@ CREATE TABLE IF NOT EXISTS `fotos` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=13 ;
 
 --
--- Dumping data for table `fotos`
+-- Dumping data for table `photospot_fotos`
 --
 
-INSERT INTO `fotos` (`IdFoto`, `Titulo`, `Pais`, `Album`, `NumVotos`, `PuntuacionTotal`, `Fichero`, `Fecha`) VALUES
+INSERT INTO `photospot_fotos` (`IdFoto`, `Titulo`, `Pais`, `Album`, `NumVotos`, `PuntuacionTotal`, `Fichero`, `Fecha`) VALUES
 (4, 'Flores', NULL, 3, 1, 4, 'files/1379242633_almond-blossom-5378_1280.jpg', '2013-09-15 10:57:13'),
 (5, 'Gota de agua', 3, 3, 0, 0, 'files/1379242731_drop-111991_1280.jpg', '2013-09-15 10:58:51'),
 (6, 'Pato', 11, 3, 1, 3, 'files/1379242784_duck-110878_1280.jpg', '2013-09-15 10:59:44'),
@@ -109,20 +109,20 @@ INSERT INTO `fotos` (`IdFoto`, `Titulo`, `Pais`, `Album`, `NumVotos`, `Puntuacio
 -- --------------------------------------------------------
 
 --
--- Table structure for table `paises`
+-- Table structure for table `photospot_paises`
 --
 
-CREATE TABLE IF NOT EXISTS `paises` (
+CREATE TABLE IF NOT EXISTS `photospot_paises` (
   `IdPais` smallint(6) NOT NULL AUTO_INCREMENT,
   `NomPais` varchar(60) COLLATE utf8_spanish_ci NOT NULL,
   PRIMARY KEY (`IdPais`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=249 ;
 
 --
--- Dumping data for table `paises`
+-- Dumping data for table `photospot_paises`
 --
 
-INSERT INTO `paises` (`IdPais`, `NomPais`) VALUES
+INSERT INTO `photospot_paises` (`IdPais`, `NomPais`) VALUES
 (1, 'España'),
 (2, 'Andorra'),
 (3, 'United Arab Emirates'),
@@ -375,10 +375,10 @@ INSERT INTO `paises` (`IdPais`, `NomPais`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `usuarios`
+-- Table structure for table `photospot_usuarios`
 --
 
-CREATE TABLE IF NOT EXISTS `usuarios` (
+CREATE TABLE IF NOT EXISTS `photospot_usuarios` (
   `IdUsuario` int(11) NOT NULL AUTO_INCREMENT,
   `NomUsuario` varchar(15) COLLATE utf8_spanish_ci NOT NULL,
   `Clave` varchar(70) COLLATE utf8_spanish_ci NOT NULL,
@@ -395,10 +395,10 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=3 ;
 
 --
--- Dumping data for table `usuarios`
+-- Dumping data for table `photospot_usuarios`
 --
 
-INSERT INTO `usuarios` (`IdUsuario`, `NomUsuario`, `Clave`, `Email`, `Sexo`, `FNacimiento`, `Ciudad`, `Pais`, `Foto`, `FRegistro`) VALUES
+INSERT INTO `photospot_usuarios` (`IdUsuario`, `NomUsuario`, `Clave`, `Email`, `Sexo`, `FNacimiento`, `Ciudad`, `Pais`, `Foto`, `FRegistro`) VALUES
 (2, 'test', 'f69ddcc92c44eb5a6320e241183ef551d9287d7fa6e4b2c77459145d8dd0bb37', 'rub3nmv@gmail.com', 0, '1986-11-08', 'Alicante', 10, 'files/profile/2-generico.jpg', '2013-09-15 10:55:01');
 
 --
@@ -406,31 +406,31 @@ INSERT INTO `usuarios` (`IdUsuario`, `NomUsuario`, `Clave`, `Email`, `Sexo`, `FN
 --
 
 --
--- Constraints for table `albumes`
+-- Constraints for table `photospot_albumes`
 --
-ALTER TABLE `albumes`
-  ADD CONSTRAINT `albumes_ibfk_1` FOREIGN KEY (`Pais`) REFERENCES `paises` (`IdPais`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `albumes_ibfk_2` FOREIGN KEY (`Usuario`) REFERENCES `usuarios` (`IdUsuario`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `photospot_albumes`
+  ADD CONSTRAINT `albumes_ibfk_1` FOREIGN KEY (`Pais`) REFERENCES `photospot_paises` (`IdPais`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `albumes_ibfk_2` FOREIGN KEY (`Usuario`) REFERENCES `photospot_usuarios` (`IdUsuario`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `comentarios`
+-- Constraints for table `photospot_comentarios`
 --
-ALTER TABLE `comentarios`
-  ADD CONSTRAINT `comentarios_ibfk_1` FOREIGN KEY (`IdFoto`) REFERENCES `fotos` (`IdFoto`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `comentarios_ibfk_2` FOREIGN KEY (`IdUsuario`) REFERENCES `usuarios` (`IdUsuario`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `photospot_comentarios`
+  ADD CONSTRAINT `comentarios_ibfk_1` FOREIGN KEY (`IdFoto`) REFERENCES `photospot_fotos` (`IdFoto`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `comentarios_ibfk_2` FOREIGN KEY (`IdUsuario`) REFERENCES `photospot_usuarios` (`IdUsuario`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `fotos`
+-- Constraints for table `photospot_fotos`
 --
-ALTER TABLE `fotos`
-  ADD CONSTRAINT `fotos_ibfk_1` FOREIGN KEY (`Pais`) REFERENCES `paises` (`IdPais`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `fotos_ibfk_2` FOREIGN KEY (`Album`) REFERENCES `albumes` (`IdAlbum`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `photospot_fotos`
+  ADD CONSTRAINT `fotos_ibfk_1` FOREIGN KEY (`Pais`) REFERENCES `photospot_paises` (`IdPais`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fotos_ibfk_2` FOREIGN KEY (`Album`) REFERENCES `photospot_albumes` (`IdAlbum`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `usuarios`
+-- Constraints for table `photospot_usuarios`
 --
-ALTER TABLE `usuarios`
-  ADD CONSTRAINT `usuarios_ibfk` FOREIGN KEY (`Pais`) REFERENCES `paises` (`IdPais`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `photospot_usuarios`
+  ADD CONSTRAINT `usuarios_ibfk` FOREIGN KEY (`Pais`) REFERENCES `photospot_paises` (`IdPais`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

@@ -17,7 +17,7 @@
 		require("includes/connectBD.inc");
 
 		// Busca el usuario en la BD y recupera su clave
-		$sentencia = "SELECT Clave, Foto FROM usuarios WHERE NomUsuario = '$usuario'";
+		$sentencia = "SELECT Clave, Foto FROM ".$tablePrefix."usuarios WHERE NomUsuario = '$usuario'";
 
 		// Guardamos el resultado
 		$result = mysqli_query($iden, $sentencia);

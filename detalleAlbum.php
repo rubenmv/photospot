@@ -5,7 +5,7 @@
 
 		// Seleccionamos el nombre del álbum
 		$id = $_GET['id'];
-		$sentencia = 	"SELECT Titulo, Descripcion, Fecha, Pais FROM albumes WHERE IdAlbum = $id";
+		$sentencia = 	"SELECT Titulo, Descripcion, Fecha, Pais FROM ".$tablePrefix."albumes WHERE IdAlbum = $id";
 		$result = mysqli_query($iden, $sentencia);
 		$row = mysqli_fetch_array($result);
 
@@ -28,7 +28,7 @@
 				// Ya no necesitamos el resultado anterior
 				mysqli_free_result($result);
 				// Seleccionamos el nombre del pais
-				$sentencia = "SELECT NomPais FROM paises WHERE IdPais = $row[Pais]";
+				$sentencia = "SELECT NomPais FROM ".$tablePrefix."paises WHERE IdPais = $row[Pais]";
 				$result = mysqli_query($iden, $sentencia);
 				$row = mysqli_fetch_array($result); // Tampoco necesitamos el row anterior
 				echo " en <span class=\"bold\">$row[NomPais]</span>";
@@ -41,8 +41,8 @@
 
 		// Seleccionamos las fotos del álbum
 		$sentencia = 	"SELECT IdFoto, Titulo, Fecha, Fichero, NomPais, Pais
-							FROM fotos
-								LEFT JOIN paises ON IdPais = Pais
+							FROM ".$tablePrefix."fotos
+								LEFT JOIN ".$tablePrefix."paises ON IdPais = Pais
 							WHERE Album = $id
 							ORDER BY Fecha DESC";
 		$result = mysqli_query($iden, $sentencia);

@@ -16,7 +16,7 @@ if(!preg_match($expReg['nombre'], $_POST['nombre'])) $valida = false;
 else {
 	$nombre = $_POST['nombre'];
 
-	$sentencia = "SELECT NomUsuario FROM usuarios WHERE NomUsuario = '$nombre'";
+	$sentencia = "SELECT NomUsuario FROM ".$tablePrefix."usuarios WHERE NomUsuario = '$nombre'";
 	$result = mysqli_query($iden, $sentencia);
 
 	// Encuentra al menos un usuario con ese nombre

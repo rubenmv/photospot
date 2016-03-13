@@ -6,7 +6,7 @@
 	require_once("includes/connectBD.inc"); // $iden
 
 	// Recogemos la id del usuario que envia el comentario
-	$sentencia = "SELECT IdUsuario FROM usuarios WHERE NomUsuario = '$usuario'";
+	$sentencia = "SELECT IdUsuario FROM ".$tablePrefix."usuarios WHERE NomUsuario = '$usuario'";
 	$result = mysqli_query($iden, $sentencia);
 
 	if($result) {
@@ -14,7 +14,7 @@
 		$idUsuario = $row['IdUsuario'];
 		mysqli_free_result($result);
 
-		$sentencia = "INSERT INTO `comentarios` (`IdFoto`, `IdUsuario`, `Texto`) VALUES
+		$sentencia = "INSERT INTO `".$tablePrefix."comentarios` (`IdFoto`, `IdUsuario`, `Texto`) VALUES
 								  ('$idFoto', '$idUsuario', '$texto')";
 
 		$result = mysqli_query($iden, $sentencia);

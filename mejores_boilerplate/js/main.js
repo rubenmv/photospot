@@ -1,5 +1,5 @@
 var fotos = []; // Lista de objetos Foto
-var RUTABASE = "http://localhost:8080/ph2p3/"; // Para timthumb
+var RUTABASE = "http://localhost/photospot/"; // Para timthumb
 
 $(document).ready(function(){
   $('.submit').button();
@@ -99,7 +99,7 @@ function getMejoresFotos(url) {
 						datos[i].fecha = new Date(datos[i].fecha);
 					}
 
-					if(datos[i].fechaRegistro !== null) {
+					if(datos[i].fechaRegistro) {
 						// ISO 8601 para el Date.parse(). Formato "2011-10-10T14:48:00"
 						datos[i].fechaRegistro = datos[i].fechaRegistro.replace(' ', 'T');
 						datos[i].fechaRegistro = new Date(datos[i].fechaRegistro);

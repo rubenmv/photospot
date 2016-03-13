@@ -20,7 +20,7 @@
 					require_once("includes/connectBD.inc"); // $iden
 
 					$usuario = $_SESSION['sesion'];
-					$sentencia = "SELECT usuarios.Foto FROM usuarios
+					$sentencia = "SELECT Foto FROM ".$tablePrefix."usuarios
 									WHERE NomUsuario = '$usuario'";
 
 					$result = mysqli_query($iden, $sentencia);
@@ -56,6 +56,12 @@
 
 		<!-- Informacion y enlace de registro -->
 		<?php if(!isset($_SESSION['sesion'])) { ?>
+		<article id="info-pruebas" class="center info-pruebas">
+			<p>
+				Este sitio es solo una demostración, un campo de pruebas para el estudio de distintas tecnologías web.
+				No se asegura su buen funcionamiento ni la preservación de los datos.
+			</p>
+		</article>
 		<article id="info-registro" class="center info-registro">
 			<p>
 				Photo Spot es el lugar donde podrás compartir tus fotos con todo el mundo.

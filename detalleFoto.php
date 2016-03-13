@@ -11,10 +11,10 @@
 
 	$sentencia =   "SELECT f.Album, f.Titulo AS TituloFoto, f.Fecha, f.NumVotos, f.PuntuacionTotal, f.Fichero,
 						   a.Titulo AS TituloAlbum, p.NomPais, u.NomUsuario
-					FROM fotos f
-						LEFT JOIN albumes a ON f.Album = a.IdAlbum
-						LEFT JOIN paises p ON f.Pais = p.IdPais
-						LEFT JOIN usuarios u ON a.Usuario = u.IdUsuario
+					FROM ".$tablePrefix."fotos f
+						LEFT JOIN ".$tablePrefix."albumes a ON f.Album = a.IdAlbum
+						LEFT JOIN ".$tablePrefix."paises p ON f.Pais = p.IdPais
+						LEFT JOIN ".$tablePrefix."usuarios u ON a.Usuario = u.IdUsuario
 					WHERE f.IdFoto = $idFoto";
 	$result = mysqli_query($iden, $sentencia);
 

@@ -30,13 +30,15 @@ Instrucciones
 -------------
 Si se desea poner en marcha la web para comprobar su funcionamiento mi recomendación es utilizar XAMPP (http://www.apachefriends.org/en/xampp.html). Simplemente abría que mover la carpeta del proyecto al directorio 'htdocs' de la instalación de xampp y antes que nada acceder a PHPMyAdmin y crear la base de datos llamada "ps_bd" e importar su contenido mediante el fichero ps_bd.sql, de este manera se creará la estructura de datos para hacer funcionar la página con el usuario de prueba y las fotos de muestra incluidas.
 
-Importante: el fichero includes/connectBD.inc debe ser configurado con el usuario y contraseña con permisos para acceder y modificar la base de datos. Por defecto es root sin contraseña, lo cual debería funcionar en una instalación por defecto de XAMPP.
+Importante: el fichero includes/connectBD.inc debe ser configurado con el usuario y contraseña con permisos para acceder y modificar la base de datos.
+
+Por defecto se agrega el prefijo "photospot_" a cada tabla para evitar conflictos en una misma base de datos con distintas aplicaciones. Si se desea cambiar esto o incluso borrarlo simplemente dejar en blanco el prefijo en el fichero de conexión. Si se van a importar los datos de demostración habría que sustituir el prefijo en también en "ps_bd.sql".
 
 El proyecto está configurado para funcionar en la carpeta htdocs/photospot con el puerto por defecto para localhost (quedaría como http://localhost/photospot/), si se realiza algún cambio y algunas de las miniaturas dejan de funcionar, probablemente sea porque ha cambiado esa dirección del sitio y habría que modificar la RUTABASE al principio del fichero scripts-all.js para que corresponda con la ruta nueva. Esto es debido a que timbthumbs necesita la ruta completa y al cargar por ajax no se puede obtener, solo PHP puede.
 
-Se ha incluido un usuario de prueba con la siguiente información:  
-Nombre de usuario:		test  
-Contraseña de usuario:	Test01  
+Se ha incluido un usuario de prueba con la siguiente información:
+	Nombre de usuario:		test
+	Contraseña de usuario:	Test01
 
 
 Licencia

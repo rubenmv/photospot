@@ -8,8 +8,8 @@
 		<?php
 			// Últimas 6 fotos registradas en el sistema
 			$sentencia = 	"SELECT IdFoto, Titulo, Fecha, Fichero, NomPais
-								FROM fotos
-								LEFT JOIN paises ON IdPais = Pais
+								FROM ".$tablePrefix."fotos
+								LEFT JOIN ".$tablePrefix."paises ON IdPais = Pais
 								ORDER BY Fecha DESC
 								LIMIT 12";
 			$result = mysqli_query($iden, $sentencia);
@@ -26,12 +26,15 @@
 			<?php
 				// Las 10 mejores fotos segun su puntuacion media
 				$sentencia = 	"SELECT IdFoto, Titulo, Fecha, Fichero, NomPais
-									FROM fotos
-									LEFT JOIN paises ON IdPais = Pais
+									FROM ".$tablePrefix."fotos
+									LEFT JOIN ".$tablePrefix."paises ON IdPais = Pais
 									WHERE NumVotos > 0
 									ORDER BY (PuntuacionTotal DIV NumVotos) DESC
 									LIMIT 10";
+
 				$result = mysqli_query($iden, $sentencia);
+
+
 
 				if($result && mysqli_num_rows($result) > 0) { ?>
 					<section id="destacadas">

@@ -57,7 +57,7 @@
                                 require_once("../includes/connectBD.inc"); // $iden
 
                                 $usuario = $_SESSION['sesion'];
-                                $sentencia = "SELECT usuarios.Foto FROM usuarios
+                                $sentencia = "SELECT Foto FROM ".$tablePrefix."usuarios
                                                 WHERE NomUsuario = '$usuario'";
 
                                 $result = mysqli_query($iden, $sentencia);

@@ -5,7 +5,7 @@
 // Se guarda en $iden
 require_once("connectBD.inc");
 
-$sentencia = "SELECT IdPais, NomPais FROM paises";
+$sentencia = "SELECT IdPais, NomPais FROM ".$tablePrefix."paises";
 $result = mysqli_query($iden, $sentencia);
 
 // Solo se muestra el selector si se ha encontrado algún país

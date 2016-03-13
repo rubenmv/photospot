@@ -51,9 +51,9 @@
 	// Recogemos los resultados de la búsqueda
 	$sentencia =   "SELECT  f.IdFoto, f.Titulo as TituloFoto, f.Fecha, f.NumVotos, f.PuntuacionTotal,
 							f.Fichero, a.Titulo as TituloAlbum, p.NomPais
-					FROM fotos f
-						LEFT JOIN paises p ON p.IdPais = f.Pais
-						LEFT JOIN albumes a ON a.IdAlbum = f.Album
+					FROM ".$tablePrefix."fotos f
+						LEFT JOIN ".$tablePrefix."paises p ON p.IdPais = f.Pais
+						LEFT JOIN ".$tablePrefix."albumes a ON a.IdAlbum = f.Album
 					$condiciones
 					ORDER BY f.Titulo ASC
 					LIMIT $first, $limit";
